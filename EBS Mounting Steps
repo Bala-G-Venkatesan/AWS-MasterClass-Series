@@ -1,0 +1,17 @@
+# Step 1: List available disks
+lsblk -f
+
+# Step 2: Create a filesystem (if new volume)
+sudo mkfs -t ext4 /dev/xvdbb  # Change device name as per your setup
+
+# Step 3: Create a mount point
+sudo mkdir /data
+
+# Step 4: Mount the volume
+sudo mount /dev/xvdbb /data
+
+# Step 5: Verify mount
+df -hT | grep xvdbb
+
+# Step 6: Make it persistent across reboots
+echo '/dev/xvdbb /data ext4 defaults,nofail 0 2' | sudo tee -a /etc/fstab
