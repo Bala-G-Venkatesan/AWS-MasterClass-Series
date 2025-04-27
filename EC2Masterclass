@@ -1,0 +1,58 @@
+🖥️ EC2 Masterclass - Demo Steps
+
+This repository documents the hands-on demos performed in the EC2 Masterclass video.
+
+📋 Steps Covered
+
+1. Launch an EC2 Instance
+
+   AMI: Amazon Linux 2 (or Ubuntu)
+   Instance Type: t2.micro (free tier eligible)
+   Create/Use an existing Key Pair
+   Configure Security Group:
+    Allow SSH (port 22)
+    Allow HTTP (port 80)
+
+2. Connect to the Instance via SSH
+
+  chmod 400 your-key.pem
+  ssh -i your-key.pem ec2-user@your-public-ip
+
+3. Install a Web Server (Apache)
+
+  # For Amazon Linux 2
+  sudo yum install httpd -y
+  sudo systemctl start httpd
+  sudo systemctl enable httpd
+
+ # Create a sample web page
+  echo "Welcome to EC2 Masterclass!" | sudo tee /var/www/html/index.html
+  Access the web server using the Public IP.
+
+4. Modify Security Groups (Demo)
+
+  Revoke port 80 (HTTP) → Website becomes inaccessible.
+  Allow port 80 again → Website becomes accessible.
+
+5. Allocate and Associate an Elastic IP
+
+  Allocate a new Elastic IP.
+  Associate the Elastic IP with the EC2 instance.
+  Note: Elastic IP remains the same even after stop/start.
+
+6. Create an AMI (Amazon Machine Image)
+
+  Create an AMI (backup) of the running instance.
+  Launch a new EC2 instance using this AMI to restore the environment.
+
+7. Terminate the Instance and Cleanup
+
+  Terminate EC2 instance(s).
+  Release Elastic IP to avoid unnecessary charges.
+  Delete unused AMIs and Snapshots if not needed.
+
+🛑 Important Reminders
+  Always release unused Elastic IPs to avoid being billed.
+
+📎 License
+This project is licensed under the MIT License.
