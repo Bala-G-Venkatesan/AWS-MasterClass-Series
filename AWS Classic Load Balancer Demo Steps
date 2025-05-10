@@ -1,1 +1,21 @@
+#Install NGINX
+sudo apt update 
+sudo apt install git
+sudo apt install nginx
+sudo systemctl enable nginx
+
+#Clone the repo as webapp folder
+
+git https://github.com/StartBootstrap/startbootstrap-creative.git webapp
+ 
+and move the files from webapp/dist/ to /var/www/html/
+
+#Add IP-address in the index.html
+vi index.html
+find below line and replace "" with the instance public address
+<a class="navbar-brand" href="#page-top">13.233.167.250</a>
+
+#
+
+
 
