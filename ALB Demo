@@ -27,5 +27,34 @@ nohup flask --app flaskr run --debug --host=0.0.0.0 --port=3000 > app.log 2>&1 &
 
 ##Access the app via http://publicip:3000
 
+##To access the websites over nginx ,change the config like below:
+cd /etc/nginx/sites-available
+vi default
+
+remove the existing content and add below content
+
+server {
+    listen 80;
+
+    location /app1/ {
+        proxy_pass http://localhost:3000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    location /app2/ {
+        proxy_pass http://localhost:5000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    # Optional: root fallback
+    location / {
+        return 200 'Welcome to the reverse proxy!';
+        add_header Content-Type text/plain;
+    }
+}
+
+
 
 
