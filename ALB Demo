@@ -1,1 +1,31 @@
+#Pre-requisite Installation
+
+sudo apt update 
+sudo apt install git
+sudo apt install nginx
+sudo apt python3
+python3-pip
+apt install python3.10-venv
+sudo systemctl enable nginx
+
+#Deploying Node.js Application (Port 5000)
+git clone https://github.com/heroku/node-js-sample.git nodejsapp
+cd nodejsapp
+npm install
+nohup npm start > app.log 2>&1 &
+#Access the app via http://publicip:5000
+
+##Deploying Node.js Application (Port 3000)
+git clone https://github.com/pallets/flask
+cd flask
+cd examples/tutorial
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -e .
+flask --app flaskr init-db
+nohup flask --app flaskr run --debug --host=0.0.0.0 --port=3000 > app.log 2>&1 &
+
+##Access the app via http://publicip:3000
+
+
 
