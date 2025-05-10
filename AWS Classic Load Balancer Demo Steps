@@ -15,7 +15,6 @@ vi index.html
 find below line and replace "Start Bootstrap" with the instance public address
 <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
 
-#
-
+#now access the webserver on the browser using http://publicip:80
 
 
